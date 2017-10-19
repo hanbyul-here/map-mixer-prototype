@@ -1,5 +1,4 @@
 #map {
   width: 100%;
-  height: calc(100% - 500px);
-  max-height: 700px;
+  height: 500px;
 }
