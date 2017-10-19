@@ -8,7 +8,7 @@ import './controller-panel.css'
 import MapData from './data/mapzen-maps'
 
 
-import { changeBaseMap, changeLabelDetail } from './actions'
+import { changeBaseMap, changeLabelDetail, changeColorTheme } from './actions'
 
 
 const getArrayWithObject = (obj) => {
@@ -22,20 +22,23 @@ function getController (baseMap, labelDetail) {
   let components = [];
   let keyCount = 0;
   for (const attr in MapData[baseMap].attributes) {
-
-    if (MapData[baseMap].attributes[attr].type =='select') {
-      components.push(<DropdownController
+    if (MapData[baseMap].attributes[attr].type ==='select') {
+      components.push(
+        <DropdownController
           label = {attr}
           key = {keyCount}
-          options = {getArrayWithObject(MapData[baseMap].attributes[attr].values)} />);
-    } else if (MapData[baseMap].attributes[attr].type =='range') {
-      components.push(<Controller
-            label = {attr}
-            key = {keyCount}
-            value = {labelDetail}
-            min = {MapData[baseMap].attributes[attr].min}
-            max = {MapData[baseMap].attributes[attr].max}
-            onChangeAction = {changeLabelDetail}
+          onChangeAction = {changeColorTheme}
+          options = {getArrayWithObject(MapData[baseMap].attributes[attr].values)}
+        />);
+    } else if (MapData[baseMap].attributes[attr].type ==='range') {
+      components.push(
+        <Controller
+          label = {attr}
+          key = {keyCount}
+          value = {labelDetail}
+          min = {MapData[baseMap].attributes[attr].minValue}
+          max = {MapData[baseMap].attributes[attr].maxValue}
+          onChangeAction = {changeLabelDetail}
         />);
     }
     keyCount++;
@@ -49,7 +52,7 @@ class ControllerPanel extends React.Component {
   render () {
     const matchingControllers = getController(this.props.baseMap, this.props.labelDetail);
     return (
-      <div className="panel">
+      <div className="panel col-sm-4">
         <DropdownController
           label="Base Map"
           options={getArrayWithObject(MapData)}
@@ -65,7 +68,8 @@ class ControllerPanel extends React.Component {
 function mapStateToProps (state) {
   return {
     baseMap: state.baseMap,
-    labelDetail: state.labelDetail
+    labelDetail: state.labelDetail,
+    colorTheme: state.colorTheme,
   }
 }
 

@@ -30,9 +30,9 @@ export default {
       "label": {
         "baseURL": "https://mapzen.com/carto/refill-style/9/themes/label-",
         "suffixURL": ".zip",
-          "type": "range",
-          "minValue": 0,
-          "maxValue": 0,
+        "type": "range",
+        "minValue": 0,
+        "maxValue": 10,
       },
       "colors": {
         "type": "select",

@@ -15,7 +15,7 @@ let DropdownController = ({label, options, onChangeAction, dispatch}) => {
         onChange={e => {dispatch(onChangeAction(input.value))
         }}>
         {options.map(option => (
-            <option key={option} value ={option}>{option}</option>
+            <option key={option} value = {option}>{option}</option>
           ))}
         </select>
     </div>

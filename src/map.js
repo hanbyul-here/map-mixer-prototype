@@ -43,9 +43,14 @@ const getImportObject = function (sceneArray) {
 
 const loadNewCombination = state => {
   if (scene) {
-    let baseMapURL = MapData[state.baseMap].baseURL;
-    let labelURL = `${MapData[state.baseMap].attributes.label.baseURL}${state.labelDetail}${MapData[state.baseMap].attributes.label.suffixURL}`;
-    scene.load(getImportObject([baseMapURL, labelURL]));
+    const baseMapURL = MapData[state.baseMap].baseURL;
+    const labelURL = `${MapData[state.baseMap].attributes.label.baseURL}${state.labelDetail}${MapData[state.baseMap].attributes.label.suffixURL}`;
+    if (state.baseMap ==='refill') {
+      const colorThemeURL = `${MapData[state.baseMap].attributes.colors.baseURL}${state.colorTheme}${MapData[state.baseMap].attributes.colors.suffixURL}`;
+      scene.load(getImportObject([baseMapURL, labelURL, colorThemeURL]))
+    } else {
+      scene.load(getImportObject([baseMapURL, labelURL]));
+    }
   }
 }
 

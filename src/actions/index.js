@@ -13,9 +13,9 @@ export const changeLabelDetail = val => {
 }
 
 
-export const changeMapDetail = val => {
+export const changeColorTheme = val => {
   return {
-    type: 'CHANGE_MAP_DETAIL',
+    type: 'CHANGE_COLOR_THEME',
     val
   }
 }
