@@ -7,7 +7,7 @@ import CodePanel from './code-panel';
 class App extends Component {
   render() {
     return (
-      <div className="App">
+      <div className="App container">
         <Map />
         <div className="row">
           <Panel />
